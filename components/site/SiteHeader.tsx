@@ -81,15 +81,9 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] ${
-          open
-            ? "pointer-events-none opacity-0"
-            : scrolled
-              ? "border-b border-black/[0.06] bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur-xl"
-              : "bg-transparent"
-        }`}
-      >
+      <header style={{ position: "sticky", top: 0, zIndex: 100 ,   backdropFilter: 'blur(10px)',
+    borderBottom: 'none',
+    boxShadow: 'none'}}>
         <div className="mx-auto flex h-[74px] max-w-[1200px] items-center justify-between px-5 md:px-9">
           <Link
             href="/"

@@ -26,7 +26,7 @@ function HeroBackgroundPanel() {
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f5f5f5] pt-[74px]">
+    <section className="relative bg-[#f5f5f5] pt-[74px]">
       
       {/* TOP FADE (same as yours) */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[74px] bg-gradient-to-b from-[#f5f5f5] via-[#f5f5f5]/90 to-transparent" />
@@ -122,6 +122,8 @@ export function HeroSection() {
         </div> */}
 
       </div>
+      <div className="h-[60px] md:h-[90px]" />
     </section>
+    
   );
 }
