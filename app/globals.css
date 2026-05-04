@@ -59,3 +59,24 @@ body {
 ::selection {
   background: color-mix(in srgb, var(--color-accent) 35%, transparent);
 }
+
+@keyframes hero-tag-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-tag-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: hero-tag-marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tag-marquee-track {
+    animation: none;
+  }
+}
