@@ -7,6 +7,7 @@ import { HowItWorksSection } from "@/components/site/HowItWorksSection";
 import { FeaturesSection } from "@/components/site/FeaturesSection";
 import { TestimonialsSection } from "@/components/site/TestimonialsSection";
 import { ShowcaseSection } from "@/components/site/ShowcaseSection";
+import { PriceSection } from "@/components/site/PriceSection";
 import { BlogSection } from "@/components/site/BlogSection";
 import { FAQSection } from "@/components/site/FAQSection";
 
@@ -22,8 +23,10 @@ export default function Home() {
         <ShowcaseSection />
         <FeaturesSection />
         <TestimonialsSection />
+        <PriceSection />
         <BlogSection />
         <FAQSection />
+        
       </main>
       <SiteFooter />
     </>
