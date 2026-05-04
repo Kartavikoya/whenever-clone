@@ -17,11 +17,11 @@ export default function Home() {
       <main>
         <HeroSection />
         <LogoStrip />
-        <PricingStrip />
         <HowItWorksSection />
+        <PricingStrip />
+        <PricingDetailSection />
         <FeaturesSection />
         <TestimonialsSection />
-        <PricingDetailSection />
         <BlogSection />
         <FAQSection />
       </main>

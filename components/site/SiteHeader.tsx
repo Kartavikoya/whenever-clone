@@ -103,7 +103,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="pointer-events-auto inline-flex h-10 items-center gap-2 rounded-full border border-black/[0.12] bg-white px-4 text-[14px] font-semibold text-[#000] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-[transform,box-shadow] hover:shadow-md active:scale-[0.98]"
+            className="pointer-events-auto inline-flex h-11 items-center gap-2 rounded-full border border-black/[0.06] bg-white px-5 text-[14px] font-semibold text-[#000] shadow-[0_10px_24px_-20px_rgba(0,0,0,0.22)] transition-[transform,box-shadow,background-color] hover:shadow-md active:scale-[0.98]"
             aria-expanded={open}
             aria-controls="site-menu-overlay"
             aria-label="Open menu"

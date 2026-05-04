@@ -35,6 +35,34 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
+
+.hero-tag-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 14s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.floating-avatar {
+  animation: avatar-float var(--avatar-duration, 8s) ease-in-out infinite;
+  animation-delay: var(--avatar-delay, 0s);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -77,6 +105,60 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-tag-marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes testimonial-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes avatar-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--avatar-rotate, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(var(--avatar-rotate, 0deg));
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.testimonial-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: testimonial-marquee 42s linear infinite;
+}
+
+.floating-avatar {
+  animation: avatar-float var(--avatar-duration, 8s) ease-in-out infinite;
+  animation-delay: var(--avatar-delay, 0s);
+}
+
+.soft-pulse {
+  animation: soft-pulse 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee-track,
+  .floating-avatar,
+  .soft-pulse {
     animation: none;
   }
 }
