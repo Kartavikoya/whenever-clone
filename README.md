@@ -94,7 +94,7 @@ components/
 
 ##  Deployment
 
-Deploy easily with **Vercel**:
+Deploy easily with **Vercel**:   https://whenever-clone-c3g7hnib4-kartavis-projects.vercel.app/
 
 ```bash
 npm run build
