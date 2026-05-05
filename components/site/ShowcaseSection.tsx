@@ -26,7 +26,7 @@ export function ShowcaseSection() {
     <section 
       ref={targetRef} 
       id="projects" 
-      className="relative h-[400vh] bg-[#0c0c0c]"
+      className="relative h-[111vh] bg-[#0c0c0c]"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         

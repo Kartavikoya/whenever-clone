@@ -1,40 +1,60 @@
-import Image from "next/image";
-import Logo1 from "@/public/logos/logo1.svg";
-import Logo2 from "@/public/logos/logo2.svg";
-import Logo3 from "@/public/logos/logo3.svg";
-import Logo4 from "@/public/logos/logo4.svg";
-import Logo5 from "@/public/logos/logo5.svg";
+"use client";
 
-const logos = [Logo1, Logo2, Logo3, Logo4, Logo5];
+import Image from "next/image";
+
+const LOGOS = [
+  "/logos/logo1.svg",
+  "/logos/logo2.svg",
+  "/logos/logo3.svg",
+  "/logos/logo4.svg",
+  "/logos/logo5.svg",
+];
 
 export function LogoStrip() {
   return (
-    <section className="bg-[#f5f5f5] pb-10 md:pb-14">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-9">
-
-        <p className="mb-6 text-[12px] font-medium text-[#989898]">
+    <div className="
+      relative z-10 
+      -mt-4 md:-mt-12 lg:-mt-20
+      pb-8 md:pb-14
+    ">
+      <div className="
+        mx-auto 
+        max-w-[1200px] 
+        px-6 md:px-16 lg:px-24 
+        flex flex-col md:flex-row 
+        items-center 
+        gap-4 md:gap-10
+      ">
+        
+        <p className="
+          text-[11px] md:text-[13px] 
+          text-[#989898] 
+          max-w-[140px] 
+          text-center md:text-left
+        ">
           Trusted by the biggest brands worldwide
         </p>
 
-       <div className="relative flex items-center gap-10 overflow-hidden p-9 
-  [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-
-          <div className="flex w-max gap-12 animate-marquee" style={{ willChange: "transform" }}>
-
-            {[...logos, ...logos, ...logos].map((src, i) => (
+        <div className="relative w-full overflow-hidden mask-framer">
+          <div className="
+            flex w-max 
+            gap-8 md:gap-12 
+            animate-logo-scroll 
+            items-center
+          ">
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
               <Image
                 key={i}
-                src={src}
+                src={logo}
                 alt=""
-                width={120}
+                width={100}
                 height={24}
-                className="h-6 w-auto opacity-60 grayscale shrink-0"
+                className="h-4 md:h-6 w-auto opacity-70 grayscale"
               />
             ))}
-
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

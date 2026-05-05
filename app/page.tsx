@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/site/HeroSection";
-import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { LogoStrip } from "@/components/site/LogoStrip";
 import { ClientsSection } from "@/components/site/ClientsSection";
@@ -10,25 +9,28 @@ import { ShowcaseSection } from "@/components/site/ShowcaseSection";
 import { PriceSection } from "@/components/site/PriceSection";
 import { BlogSection } from "@/components/site/BlogSection";
 import { FAQSection } from "@/components/site/FAQSection";
+import { SiteHeader } from "@/components/site/SiteHeader"; // ✅ ADD THIS
 
 export default function Home() {
   return (
-    <>
+    <main className="w-full overflow-hidden">
       <SiteHeader />
-      <main>
+
+      <div className="relative bg-white">
         <HeroSection />
         <LogoStrip />
-        <HowItWorksSection />
-        <ClientsSection />
-        <ShowcaseSection />
-        <FeaturesSection />
-        <TestimonialsSection />
-        <PriceSection />
-        <BlogSection />
-        <FAQSection />
-        
-      </main>
+      </div>
+
+      <HowItWorksSection />
+      <FeaturesSection />
+      <ClientsSection />
+      <ShowcaseSection />
+      <TestimonialsSection />
+      <PriceSection />
+      <FAQSection />
+      <BlogSection />
       <SiteFooter />
-    </>
+      
+    </main>
   );
 }

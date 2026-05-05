@@ -13,7 +13,7 @@ const buttonVariants = {
 
 export function HowItWorksSection() {
   return (
-    <section className="bg-[#f5f5f5] py-24 px-6">
+    <section className="bg-white py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">How it works</p>
@@ -41,7 +41,8 @@ export function HowItWorksSection() {
               </div>
 
               {/* VIDEO-STYLE ANIMATED BUTTON */}
-              <motion.button 
+              <motion.a
+               href="#pricing"
                 variants={buttonVariants}
                 className="w-full h-[64px] text-white rounded-full font-bold text-lg shadow-xl relative overflow-hidden flex items-center justify-center"
               >
@@ -60,6 +61,7 @@ export function HowItWorksSection() {
 
                   {/* Secondary Text: Slides Up and In */}
                   <motion.span
+                  
                     className="absolute"
                     variants={{
                       initial: { y: 40, opacity: 0 },
@@ -70,7 +72,7 @@ export function HowItWorksSection() {
                     Join Today
                   </motion.span>
                 </div>
-              </motion.button>
+              </motion.a>
             </motion.div>
             
             <div>

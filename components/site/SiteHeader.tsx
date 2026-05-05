@@ -3,66 +3,17 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const overlayLinks = [
+const links = [
   { href: "/", label: "Home" },
   { href: "#pricing", label: "Pricing" },
   { href: "#blog", label: "Blog" },
-  { href: "/404", label: "404" },
+  { href: "/404", label: "404" }
 ];
-
-function ChevronDown({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M2.5 4.5L6 8l3.5-3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronUp({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M2.5 7.5L6 4l3.5 3.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+  // Lock scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -70,117 +21,105 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  // Close on ESC
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
+    const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   return (
     <>
-      <header style={{ position: "sticky", top: 0, zIndex: 100 ,   backdropFilter: 'blur(10px)',
-    borderBottom: 'none',
-    boxShadow: 'none'}}>
-        <div className="mx-auto flex h-[74px] max-w-[1200px] items-center justify-between px-5 md:px-9">
+      {/* ===== HEADER ===== */}
+<header className="fixed top-0 left-0 w-full z-[100] bg-transparent">        <div className="mx-auto flex h-[70px] max-w-[1200px] items-center justify-between px-5 md:px-8 lg:px-10">
+          
+          {/* LOGO */}
           <Link
             href="/"
-            className="pointer-events-auto group flex items-baseline gap-0.5 font-serif text-[17px] font-medium italic tracking-tight text-[#000]"
+            className="flex items-baseline gap-0.5 font-serif text-[18px] italic font-medium tracking-tight"
           >
             <span>whenevr</span>
-            <span className="translate-y-[-3px] font-sans text-[11px] font-medium not-italic text-[#7c7c7c] transition-colors group-hover:text-[#989898]">
+            <span className="text-[10px] not-italic text-gray-500 translate-y-[-4px]">
               ®
             </span>
           </Link>
 
+          {/* MENU BUTTON */}
           <button
-            type="button"
-            className="pointer-events-auto inline-flex h-11 items-center gap-2 rounded-full border border-black/[0.06] bg-white px-5 text-[14px] font-semibold text-[#000] shadow-[0_10px_24px_-20px_rgba(0,0,0,0.22)] transition-[transform,box-shadow,background-color] hover:shadow-md active:scale-[0.98]"
-            aria-expanded={open}
-            aria-controls="site-menu-overlay"
-            aria-label="Open menu"
             onClick={() => setOpen(true)}
+            className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold shadow-sm hover:shadow-md transition"
           >
             Menu
-            <ChevronDown className="text-[#7c7c7c]" />
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path
+                d="M2.5 4.5L6 8l3.5-3.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
         </div>
       </header>
 
+      {/* ===== OVERLAY MENU ===== */}
       <div
-        id="site-menu-overlay"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site menu"
-        className={`fixed inset-0 z-[200] flex flex-col bg-[#f5f5f5] transition-[opacity,visibility] duration-300 ease-out ${
-          open
-            ? "visible opacity-100"
-            : "invisible pointer-events-none opacity-0"
+        className={`fixed inset-0 z-[200] bg-[#f5f5f5] transition-all duration-300 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="flex h-[74px] shrink-0 items-center justify-between px-5 md:px-9">
+        {/* TOP BAR */}
+        <div className="flex h-[70px] items-center justify-between px-5 md:px-8">
+          
           <Link
             href="/"
-            className="group flex items-baseline gap-0.5 font-serif text-[17px] font-medium italic tracking-tight text-[#000]"
             onClick={() => setOpen(false)}
+            className="font-serif text-[18px] italic"
           >
-            <span>whenevr</span>
-            <span className="translate-y-[-3px] font-sans text-[11px] font-medium not-italic text-[#7c7c7c] transition-colors group-hover:text-[#989898]">
-              ®
-            </span>
+            whenevr
           </Link>
 
           <button
-            type="button"
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-black/[0.12] bg-white px-4 text-[14px] font-semibold text-[#000] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-[transform,box-shadow] hover:shadow-md active:scale-[0.98]"
-            aria-label="Close menu"
             onClick={() => setOpen(false)}
+            className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold shadow-sm"
           >
             Close
-            <ChevronUp className="text-[#7c7c7c]" />
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path
+                d="M2.5 7.5L6 4l3.5 3.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
         </div>
 
-        <nav className="flex flex-1 flex-col items-center justify-center px-5">
-          <ul className="flex flex-col items-center gap-2 md:gap-3">
-            {overlayLinks.map((item) => (
-              <li key={item.href + item.label}>
-                <Link
-                  href={item.href}
-                  className="block py-1 text-center text-[clamp(2rem,6vw,3.5rem)] font-semibold leading-tight tracking-[-0.03em] text-[#000] transition-opacity hover:opacity-65"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="grid shrink-0 grid-cols-1 items-end gap-6 px-5 py-8 md:grid-cols-3 md:px-9 md:py-10">
-          <div className="hidden md:block" aria-hidden />
-          <p className="text-center text-[13px] font-medium text-[#989898] md:justify-self-center">
-            © {new Date().getFullYear()} Whenevr®
-          </p>
-          <a
-            href="https://www.framer.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 justify-self-center rounded-lg border border-black/[0.08] bg-white px-3 py-2 text-[12px] font-medium text-[#1c1c1c] shadow-sm transition-opacity hover:opacity-90 md:justify-self-end"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden
+        {/* LINKS */}
+        <div className="flex flex-col items-center justify-center h-full gap-6 -mt-16">
+          {links.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="
+                text-[clamp(2rem,8vw,4rem)]
+                font-semibold
+                tracking-tight
+                hover:opacity-60
+                transition
+              "
             >
-              <path d="M4 0h6v9H4V0zm0 15h6v9H4v-9zM15 9h6v6h-6V9zM4 9h6v6H4V9zm11-9h5v6h-5V0z" />
-            </svg>
-            Made in Framer
-          </a>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        {/* FOOTER */}
+        <div className="absolute bottom-6 w-full text-center text-sm text-gray-400">
+          © {new Date().getFullYear()} Whenevr®
         </div>
       </div>
     </>
