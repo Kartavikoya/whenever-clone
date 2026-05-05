@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { PageLoader } from "@/components/site/PageLoader";
+
 import { HeroSection } from "@/components/site/HeroSection";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { LogoStrip } from "@/components/site/LogoStrip";
@@ -9,28 +14,38 @@ import { ShowcaseSection } from "@/components/site/ShowcaseSection";
 import { PriceSection } from "@/components/site/PriceSection";
 import { BlogSection } from "@/components/site/BlogSection";
 import { FAQSection } from "@/components/site/FAQSection";
-import { SiteHeader } from "@/components/site/SiteHeader"; // ✅ ADD THIS
+import { SiteHeader } from "@/components/site/SiteHeader";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="w-full overflow-hidden">
-      <SiteHeader />
+    <>
+      {loading && <PageLoader />}
 
-      <div className="relative bg-white">
-        <HeroSection />
-        <LogoStrip />
-      </div>
+      <main className="w-full overflow-hidden">
+        <SiteHeader />
 
-      <HowItWorksSection />
-      <FeaturesSection />
-      <ClientsSection />
-      <ShowcaseSection />
-      <TestimonialsSection />
-      <PriceSection />
-      <FAQSection />
-      <BlogSection />
-      <SiteFooter />
-      
-    </main>
+        <div className="relative bg-white">
+          <HeroSection />
+          <LogoStrip />
+        </div>
+
+        <HowItWorksSection />
+        <FeaturesSection />
+        <ClientsSection />
+        <ShowcaseSection />
+        <TestimonialsSection />
+        <PriceSection />
+        <FAQSection />
+        <BlogSection />
+        <SiteFooter />
+      </main>
+    </>
   );
 }

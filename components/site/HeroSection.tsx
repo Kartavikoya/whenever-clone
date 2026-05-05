@@ -8,8 +8,7 @@ export function HeroSection() {
   const [hovered, setHovered] = useState<"pricing" | "call" | null>(null);
 
   return (
-    <section className="relative pt-[100px] bg-[#f5f5f5] overflow-hidden">
-      <div
+<section className="relative bg-[#f3f3f3] overflow-hidden">      <div
         className="
         relative flex flex-col justify-center 
         min-h-[80vh] md:min-h-[90vh] lg:min-h-screen 
@@ -23,8 +22,8 @@ export function HeroSection() {
           <div
             className="
             absolute 
-            top-[-10%] md:top-0 
-            right-[-40%] md:right-[-20%] lg:right-[-15%]
+            top-[-20%] md:top-[-10%]
+            right-[-50%] md:right-[-30%] lg:right-[-20%]
             w-[140vw] md:w-[90vw] lg:w-[70vw] 
             h-[120%]
           "
@@ -45,7 +44,7 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          <div className="absolute top-0 left-0 w-[70%] md:w-[50%] h-full bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
+          <div className="absolute top-0 left-0 w-[70%] md:w-[50%] h-full bg-gradient-to-r from-white via-white/70 to-transparent z-10" />
           <div className="absolute bottom-0 left-0 w-full h-[250px] md:h-[400px] bg-gradient-to-b from-transparent via-white/70 to-white z-10" />
         </div>
 
