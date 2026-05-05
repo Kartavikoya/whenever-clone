@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
@@ -12,44 +12,71 @@ const demoImages = [
 ];
 
 export function ShowcaseSection() {
-  const targetRef = useRef(null);
-  
+  const targetRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  const [scrollWidth, setScrollWidth] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
 
-  // CHANGED: Start at 0% to remove initial left space. 
-  // Adjust "-70%" based on the total width of your images to ensure the last one finishes at the right edge.
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  useLayoutEffect(() => {
+    const update = () => {
+      if (!trackRef.current) return;
+
+      const totalWidth = trackRef.current.scrollWidth;
+      const screenWidth = window.innerWidth;
+
+      const distance = totalWidth - screenWidth;
+
+      const maxScroll = Math.min(distance, window.innerHeight * 2);
+
+      setScrollWidth(maxScroll);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollWidth]);
 
   return (
-    <section 
-      ref={targetRef} 
-      id="projects" 
-      className="relative h-[111vh] bg-[#0c0c0c]"
+    <section
+      ref={targetRef}
+      id="projects"
+      className="relative bg-[#0c0c0c]"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        
-        <motion.div 
-          style={{ x }} 
-          // CHANGED: Removed px-[5vw] to prevent extra space on the left during the scroll start
-          className="flex gap-8"
+
+        <motion.div
+          ref={trackRef}
+          style={{ x }}
+          className="flex gap-4 md:gap-6 lg:gap-8 px-4 md:px-6"
         >
           {demoImages.map((src, i) => (
-            <div 
-              key={i} 
-              className="relative h-[75vh] w-[90vw] flex-shrink-0 md:w-[70vw] lg:w-[60vw]"
+            <div
+              key={i}
+              className="
+                relative flex-shrink-0
+                h-[55vh] 
+                w-[85vw] 
+                sm:w-[80vw]
+                md:h-[65vh] md:w-[65vw]
+                lg:h-[70vh] lg:w-[60vw]
+              "
             >
               <Image
-                src={src} 
-                alt="Project display" 
+                src={src}
+                alt="Project"
                 fill
                 priority={i === 0}
-                className="rounded-[32px] object-cover"
+                className="rounded-[20px] md:rounded-[28px] object-cover"
               />
-              
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+
+              <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 text-center px-4">
+                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-white/40">
                   Example content for demo purposes only.
                 </p>
               </div>

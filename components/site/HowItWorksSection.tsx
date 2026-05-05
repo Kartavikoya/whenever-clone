@@ -25,7 +25,7 @@ export function HowItWorksSection() {
         <div className="grid md:grid-cols-3 gap-6">
           
           {/* CARD 1: SUBSCRIBE - Updated with Video-style Text Switch */}
-          <article className="bg-white rounded-[40px] p-8 border border-black/5 shadow-sm flex flex-col justify-between">
+          <article className="bg-white rounded-[24px] md:rounded-[40px] p-5 md:p-8 border border-black/5 shadow-sm flex flex-col justify-between">
             <motion.div 
               initial="initial"
               whileHover="hover"
@@ -82,7 +82,7 @@ export function HowItWorksSection() {
           </article>
 
           {/* CARD 2: REQUEST */}
-          <article className="bg-white rounded-[40px] p-8 border border-black/5 shadow-sm flex flex-col justify-between group cursor-pointer">
+          <article className="bg-white rounded-[24px] md:rounded-[40px] p-5 md:p-8 border border-black/5 shadow-sm flex flex-col justify-between group cursor-pointer">
             <motion.div 
               initial="initial"
               whileHover="hover"
@@ -130,7 +130,7 @@ export function HowItWorksSection() {
           </article>
 
           {/* CARD 3: RECEIVE */}
-          <article className="bg-white rounded-[40px] p-8 border border-black/5 shadow-sm flex flex-col justify-between group cursor-pointer">
+          <article className="bg-white rounded-[24px] md:rounded-[40px] p-5 md:p-8 border border-black/5 shadow-sm flex flex-col justify-between group cursor-pointer">
             <motion.div 
               initial="initial"
               whileHover="hover"

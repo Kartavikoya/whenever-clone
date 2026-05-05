@@ -9,6 +9,11 @@
   --color-accent: #1dcc5d;
 }
 
+section {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   overflow-x: hidden;
 }

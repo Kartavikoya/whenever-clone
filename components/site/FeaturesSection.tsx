@@ -56,7 +56,7 @@ export function FeaturesSection() {
           <span className="text-[14px] font-medium text-black opacity-40 mb-4">
             Features
           </span>
-          <h2 className="text-[52px] md:text-[84px] font-bold tracking-tight leading-[0.95] text-black max-w-3xl">
+          <h2 className="text-[clamp(28px,6vw,84px)] font-bold tracking-tight leading-[0.95] text-black max-w-3xl">
             Everything you need <br />
             and <span className="font-serif italic font-medium">nothing</span> you don&apos;t.
           </h2>
