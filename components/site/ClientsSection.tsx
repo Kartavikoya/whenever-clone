@@ -111,7 +111,7 @@ export function ClientsSection() {
                   transition={{ duration: 0.15 }}
                 >
                   <Image
-                    src="/src/user.avif"
+                    src="https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png?scale-down-to=512"
                     alt="user"
                     fill
                     className="object-cover"
